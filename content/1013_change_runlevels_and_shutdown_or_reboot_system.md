@@ -4,12 +4,12 @@ Category: LPIC1
 Tags: System Architecture, LPIC1, LPIC1-101-500
 Authors: Jadi
 sortorder: 050
-Summary: Candidates should be able to manage the SysVinit runlevel or systemd boot target of the system. This objective includes changing to single-user mode, and shutdown or rebooting the system. Candidates should be able to alert users before switching runlevels / boot targets and properly terminate processes. This objective also includes setting the default SysVinit runlevel or systemd boot target. It also includes awareness of Upstart as an alternative to SysVinit or systemd.
+Summary: Candidates should be able to manage the `sysVinit` runlevel or `systemd` boot target of the system. This objective includes changing to single-user mode, and shutdown or  rebooting the system. Candidates should be able to alert users before switching runlevels / boot targets and properly terminate processes. This objective also includes setting the default `sysVinit` runlevel or `systemd` boot target. It also includes awareness of Upstart as an alternative to `sysVinit` or `systemd`.
 Topic: System Architecture
 
 *Weight: 3*
 
-Description: Candidates should be able to manage the SysVinit runlevel or systemd boot target of the system. This objective includes changing to single-user mode, and shutdown or rebooting the system. Candidates should be able to alert users before switching runlevels / boot targets and properly terminate processes. This objective also includes setting the default SysVinit runlevel or systemd boot target. It also includes awareness of Upstart as an alternative to SysVinit or systemd.
+Description: Candidates should be able to manage the `sysVinit` runlevel or `systemd` boot target of the system. This objective includes changing to single-user mode, and shutdown or rebooting the system. Candidates should be able to alert users before switching runlevels / boot targets and properly terminate processes. This objective also includes setting the default `sysVinit` runlevel or `systemd` boot target. It also includes awareness of Upstart as an alternative to `sysVinit` or `systemd`.
 
 ## Key Knowledge Areas:
 
@@ -18,20 +18,20 @@ Description: Candidates should be able to manage the SysVinit runlevel or system
 - Shutdown and reboot from the command line.
 - Alert users before switching runlevels / boot targets or other major system events.
 - Properly terminate processes.
-- Awareness of acpi.
+- Awareness of ACPI.
 
 ## The following is a partial list of the used files, terms and utilities:
 
 - `/etc/inittab`
-- shutdown
+- `shutdown`
 - init
 - `/etc/init.d/`
 - telinit
-- systemd
-- systemctl
+- `systemd`
+- `systemctl`
 - `/etc/systemd/`
 - `/usr/lib/systemd/`
-- wall
+- `wall`
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/1mOKv5LsPsw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -39,8 +39,8 @@ Description: Candidates should be able to manage the SysVinit runlevel or system
 
 Runlevels define what tasks can be accomplished in the current state \(or runlevel\) of a Linux system. Think of it as different stages of *being alive*.
 
-### systemd
-On systemd, we have different targets which are groups of services:
+### `systemd`
+On `systemd`, we have different targets which are groups of services:
 
 ```
 root@debian:~# systemctl list-units --type=target # On a Debian machine
@@ -99,7 +99,7 @@ maintenance
 
 ### SysV runlevels
 
-On SysV we were able to define different stages. On a Red Hat-based system we usually had 7:
+On `SysV` we were able to define different stages. On a Red Hat-based system we usually had 7:
 
 * 0- Shutdown
 * 1- Single-user mode \(recovery\); Also called S or s
@@ -118,7 +118,7 @@ And in Debian based system we had:
 
 ## Checking status and setting defaults
 
-You can check your current runlevel with `runlevel` command. It comes from SysV era but still works on systemd systems. 
+You can check your current runlevel with `runlevel` command. It comes from `SysV` era but still works on systemd systems. 
 The default was in `/etc/inittab` 
 
 ```text
@@ -128,7 +128,7 @@ id:5:initdefault:
 
 It can also be done on grub kernel parameters.
 
-Or using the runlevel and `telinit` command.
+Or using the `runlevel` and `telinit` command.
 
 ```text
 # runlevel
@@ -139,7 +139,7 @@ N 3
 # init 0 # shutdown the system
 ```
 
-You can find the files in `/etc/init.d` and runlevels in `/etc/rc[0-6].d` directories where S indicates Start and K indicates Kill. 
+You can find the files in `/etc/init.d` and runlevels in `/etc/rc[0-6].d` directories where `S` indicates Start and `K` indicates Kill. 
 
 On systemd, you can find the configs in:
 
@@ -148,9 +148,9 @@ On systemd, you can find the configs in:
 
 As discussed in 101.2
 
-### /etc/inittab
+### `/etc/inittab`
 
-Is being replaced by upstart and systemd but is still part of the exam.
+Is being replaced by `upstart` and `systemd` but is still part of the exam.
 
 ```text
 #
