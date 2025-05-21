@@ -86,7 +86,7 @@ due to several reasons which are beyond the scope of this course, the kernel sav
 
 to view all the logs including what has been logged after the boot process we use the `dmesg` command.
 
-We can also use `journalctl -k` to check Kernel logs or use `journalctl -b` to check for boot logs (or even use `journalctl -u kernel` to see all previous logs too).
+We can also use `journalctl -k` to check Kernel logs or use `journalctl -b` to check for boot logs (or even use `journalctl -b -n` to see all previous logs too).
 
 In addition to these, most systems keep the boot logs in a text-like file too and they can be found in `/var/log/boot` or `/var/log/boot.log` in Debian or Red-Hat based systems, respectively.
 
