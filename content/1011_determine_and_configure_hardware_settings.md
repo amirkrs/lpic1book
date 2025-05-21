@@ -15,16 +15,16 @@ Candidates should be able to determine and configure fundamental system hardware
 - Enable and disable integrated peripherals
 - Differentiate between the various types of mass storage devices
 - Determine hardware resources for devices
-- Tools and utilities to list various hardware information (e.g. lsusb, lspci, etc.)
+- Tools and utilities to list various hardware information (e.g. `lsusb`, `lspci`, etc)
 - Tools and utilities to manipulate USB devices
-- Conceptual understanding of sysfs, udev, dbus
+- Conceptual understanding of `sysfs`, `udev`, `dbus`
 - `/sys`
 - `/proc`
 - `/dev`
-- modprobe
-- lsmod
-- lspci
-- lsusb
+- `modprobe`
+- `lsmod`
+- `lspci`
+- `lsusb`
  
 
 ## Find out about the hardware
@@ -39,21 +39,21 @@ Firmware is the software *on* your hardware that runs it; Think of it as a built
 
 Firmware is a type of software that lives in hardware. Software is any program or group of programs run by a computer.
 
-![BIOS](/images/bios.png)
+![BIOS](./images/bios.png)
 1. BIOS (Basic Input/Output System). Old and redundant. It is intractable through a text menu-based system and it boots the computer by accessing the first sector of the first partition of your hard disk (MBR). This is not enough for modern systems and most systems use a two-step boot procedure.
 
 
-![UEFI](/images/uefi.jpeg)
+![UEFI](./images/uefi.jpeg)
 2. UEFI (Unified Extensible Firmware Interface). Started as EFI in 1998 in Intel. Now the standard. Uses a specific disk partition for boot (EFI System Partition (ESP)) and uses FAT. On Linux it's located on `/boot/efi` and the files use the `.efi` extension. You need to register each bootloader.
 
-![BIOSvsUEFI](/images/BIOSvsUEFI.png)
+![BIOSvsUEFI](./images/BIOSvsUEFI.png)
 
 ## Peripheral Devices
 These are device interfaces.
 ### PCI
 Peripheral Component Interconnect. Enables the user to add extra components to the Motherboard. Now most servers use PCI Express (PCIe)
 
-![PCI](/images/pci.jpeg)
+![PCI](./images/pci.jpeg)
 
 - Internal HDD.
     - PATA (old)
@@ -78,7 +78,7 @@ Peripheral Component Interconnect. Enables the user to add extra components to t
 ### USB
 Universal Serial Bus. Serial and need fewer connections.
 
-![USB Interfaces](/images/usb.png)
+![USB Interfaces](./images/usb.png)
 
 - 1 (12Mbps), 2 (480Mbps), 3 (PCI.e 2.0 Bus:5Gbps, PCI.e 3.0 Bus:10Gbps, PCI.e 3.2 Bus:20Gbps, PCI.e 4.0 Bus:40Gbps)
 - A, B, C
@@ -86,7 +86,7 @@ Universal Serial Bus. Serial and need fewer connections.
 ### GPIO
 General Purpose Input Output. 
 
-![GPIO on a Raspberry Pi](/images/gpio.jpeg)
+![GPIO on a Raspberry Pi](./images/gpio.jpeg)
 
 - To control other devices
 - Examples include Arduino, raspberrypi, etc.
@@ -97,9 +97,9 @@ General Purpose Input Output.
 <iframe width="560" height="315" src="https://www.youtube.com/embed/879oHKwgDG8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-Sysfs is a pseudo file system provided by the Linux kernel that exports information about various kernel subsystems, hardware devices, and associated device drivers from the kernel's device model to user space through virtual files.[1] In addition to providing information about various devices and kernel subsystems, exported virtual files are also used for their configuration.
+`sysfs` is a pseudo file system provided by the Linux kernel that exports information about various kernel subsystems, hardware devices, and associated device drivers from the kernel's device model to user space through virtual files.[1] In addition to providing information about various devices and kernel subsystems, exported virtual files are also used for their configuration.
 
-Sysfs is mounted under the `/sys` mount point.
+`sysfs` is mounted under the `/sys` mount point.
 
 ````
 jadi@funlife:~$ ls /sys
@@ -113,13 +113,13 @@ udev (userspace `/dev`) is a device manager for the Linux kernel. As the success
 
 There are a lot of devices in `/dev/` and if you plug in any device, it will be assigned a file in `/dev` (say `/dev/sdb2`). **udev** lets you control what will be what in `/dev`. For example, you can use a rule to force your 128GB flash drive with one specific vendor to be `/dev/mybackup` every single time you connect it and you can even start a backprocess as soon as it connects.
 
-In essence, **udev** serves as the custodian of the `/dev/` directory. It abstracts the representation of devices, such as a hard disk, which is identified as `/dev/sda` or `/dev/hd0`, irrespective of its manufacturer, model, or underlying technology.
+In essence, **`udev`** serves as the custodian of the `/dev/` directory. It abstracts the representation of devices, such as a hard disk, which is identified as `/dev/sda` or `/dev/hd0`, irrespective of its manufacturer, model, or underlying technology.
 
 ````
 root@funlife:/dev# ls /dev/sda*
 /dev/sda  /dev/sda1  /dev/sda2  /dev/sda3  /dev/sda5  /dev/sda6
 ````
-If a program wants to read/write from/to a device, it will use the corresponding file in /dev to do so. This can be done on **character devices** or **block devices**. When listing, a `b` or `c` will indicate this:
+If a program wants to read/write from/to a device, it will use the corresponding file in `/dev` to do so. This can be done on **character devices** or **block devices**. When listing, `a`,  `b` or `c` will indicate this:
 
 ```
 root@ocean:~# ls -ltrh /dev/  # Partial output is shown
@@ -243,12 +243,12 @@ Another very useful directory here, is `/proc/sys/net/ipv4` which controls real-
 
 Try yourself! Check the `/proc/ioports` or `/proc/dma` or `/proc/iomem`.
 
-## lsusb, lspci, lsblk, lshw
+## `lsusb`, `lspci`, `lsblk`, `lshw`
 Just like `ls` but for pci, usb, ... 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/b5bAXRSYmoA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-### lspci
+### `lspci`
 Shows PCI devices that are connected to the computer.
 
 ````
@@ -271,7 +271,7 @@ Shows PCI devices that are connected to the computer.
 ````
 
 
-### lsusb
+### `lsusb`
 Shows all the USB devices connected to the system.
 
 ````
@@ -286,19 +286,19 @@ Bus 001 Device 002: ID 8087:0024 Intel Corp. Integrated Rate Matching Hub
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 ````
 
-### lshw
+### `lshw`
 Shows hardware. Might need root status to get the full list. Test it!
 
-### lsblk
+### `lsblk`
 Used for list devices that can read from or write to by blocks of data.
 
 
 ## Loadable Kernel Modules
-Linux like any other OS needs drivers to work with hardware. In Microsoft Windows, you need to install the drivers separately but in Linux, the system has most of the drivers built-in. But to prevent the kernel from loading all of them at the same time and to decrease the Kernel size, Linux uses Kernel Modules. Loadable kernel modules (.ko files) are object files that are used to extend the kernel of the Linux Distribution. They are used to provide drivers for new hardware like IoT expansion cards that have not been included in the Linux Distribution.
+Linux like any other OS needs drivers to work with hardware. In Microsoft Windows, you need to install the drivers separately but in Linux, the system has most of the drivers built-in. But to prevent the kernel from loading all of them at the same time and to decrease the Kernel size, Linux uses Kernel Modules. Loadable kernel modules (`.ko` files) are object files that are used to extend the kernel of the Linux Distribution. They are used to provide drivers for new hardware like IoT expansion cards that have not been included in the Linux Distribution.
 
 You can inspect the modules using the `lsmod` or manage them via `modprobe` commands.
 
-### lsmod
+### `lsmod`
 Shows kernel modules. They are located at `/lib/modules`. 
 
 ````
