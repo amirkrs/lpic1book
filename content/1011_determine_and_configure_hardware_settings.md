@@ -39,14 +39,14 @@ Firmware is the software *on* your hardware that runs it; Think of it as a built
 
 Firmware is a type of software that lives in hardware. Software is any program or group of programs run by a computer.
 
-![BIOS](./images/bios.png)
+![BIOS](/images/bios.png)
 1. BIOS (Basic Input/Output System). Old and redundant. It is intractable through a text menu-based system and it boots the computer by accessing the first sector of the first partition of your hard disk (MBR). This is not enough for modern systems and most systems use a two-step boot procedure.
 
 
 ![UEFI](./images/uefi.jpeg)
 2. UEFI (Unified Extensible Firmware Interface). Started as EFI in 1998 in Intel. Now the standard. Uses a specific disk partition for boot (EFI System Partition (ESP)) and uses FAT. On Linux it's located on `/boot/efi` and the files use the `.efi` extension. You need to register each bootloader.
 
-![BIOSvsUEFI](./images/BIOSvsUEFI.png)
+![BIOSvsUEFI](/images/BIOSvsUEFI.png)
 
 ## Peripheral Devices
 These are device interfaces.
@@ -91,7 +91,7 @@ General Purpose Input Output.
 - To control other devices
 - Examples include Arduino, raspberrypi, etc.
 
-## Sysfs
+## `sysfs`
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/879oHKwgDG8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -108,7 +108,7 @@ block  bus  class  dev	devices  firmware  fs  hypervisor  kernel  module  power
 
 All block devices are at the `block` and `bus` directory has all the connected PCI, USB, serial, ... devices. Note that here in `sys` we have the devices based on their technology but `/dev/` is abstracted.
 
-## udev
+## `udev`
 udev (userspace `/dev`) is a device manager for the Linux kernel. As the successor of devfsd and hotplug, udev primarily manages device nodes in the `/dev` directory. At the same time, udev also handles all user space events raised when hardware devices are added into the system or removed from it, including firmware loading as required by certain devices.
 
 There are a lot of devices in `/dev/` and if you plug in any device, it will be assigned a file in `/dev` (say `/dev/sdb2`). **udev** lets you control what will be what in `/dev`. For example, you can use a rule to force your 128GB flash drive with one specific vendor to be `/dev/mybackup` every single time you connect it and you can even start a backprocess as soon as it connects.
@@ -133,7 +133,7 @@ brw-rw---- 1 root disk 253,   0 Dec 15  2019 /dev/vda
 D-Bus is a message bus system, a simple way for applications to talk to one another. In addition to inter-process communication, D-Bus helps coordinate process lifecycle; It makes it simple and reliable to code a "single instance" application or daemon and to launch applications and daemons on demand when their services are needed.
 
 
-## proc directory
+## `/proc` directory
 This is where the Kernel keeps its settings and properties. This directory is created on ram and files might have write access (say for some hardware configurations). You can find things like:
 
 - IRQs (interrupt requests)
