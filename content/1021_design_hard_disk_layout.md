@@ -34,7 +34,7 @@ The following is a partial list of the used files, terms, and utilities:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/AGu0ulELDzE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Like any contemporary OS, Linux uses _files_ and _directories_ to operate. But unlike _Windows_, it does not use A:, C:, D:, etc. In Linux, everything is in _\*one big tree_, starting with `/` \(called root\). Any partition, disk, CD, USB, network drive, ... will be placed somewhere in this huge tree.
+Like any contemporary OS, Linux uses _files_ and _directories_ to operate. But unlike _Windows_, it does not use `A:`, `C:`, `D:, etc. In Linux, everything is in _\*one big tree_, starting with `/` \(called root\). Any partition, disk, CD, USB, network drive, ... will be placed somewhere in this huge tree.
 
 > Note: Most of external devices \(USB, CD, ...\) are mounted at `/media/` or `/mnt/` .
 
@@ -181,19 +181,19 @@ LVM helps you create one partition from different disks and add or remove space 
 
 * Physical Volume \(PV\): A whole drive or a partition. It is better to define partitions and **not use whole disks - unpartitioned**.
 * Volume Groups \(VG\): This is the collection of one or more **PV**s. OS will see the vg as one big disk. PVs in one VG, can have different sizes or even be on different physical disks.
-* Logical Volumes \(LV\): OS will see lvs as partitions. You can format an LV with your OS and use it.
+* Logical Volumes \(LV\): OS will see LVs as partitions. You can format an LV with your OS and use it.
 
 ## Design Hard disk layout
 
 Disk layout and allocation partitions to directories depend on your usage. First, we will discuss _swap_ and _boot_ and then will see three different cases.
 
-**swap**
+**`/swap`**
 
 Swap in Linux works like an extended memory. The Kernel will _page_ memory to this partition/file. It is enough to format one partition with **swap file system** and define it in `/etc/fstab` \(you will see this later in 104 modules\).
 
 > Note: There is no strict formula for swap size. People used to say "double the ram but not more than 8GB". On recent machines with SSDs, some say "RAM + 2" (Hibernation + some extra ) or "RAM * 2" depending on your usage.
 
-**/boot**
+**`/boot`**
 
 Older Linux systems were not able to handle HUGE disks during boot \(say Terabytes\) so the `/boot` partition was separated. this separation comes in handy in situations such as  recovering broken systems. you can even make `/boot` read-only. Most of the time, having 100MB for `/boot` is enough. This partition can be on a different disk or a separated partition.
 
