@@ -15,22 +15,22 @@ Candidates should be able to guide the system through the booting process.
 
 * Provide common commands to the boot loader and options to the kernel at boot time
 * Demonstrate knowledge of the boot sequence from BIOS/UEFI to boot completion
-* Understanding of SysVinit and systemd
-* Awareness of Upstart
+* Understanding of `sysVinit` and `systemd`
+* Awareness of `Upstart`
 * Check boot events in the log files
 
 ## Terms
 
-* dmesg
-* journalctl
+* `dmesg`
+* `journalctl`
 * BIOS
 * UEFI
 * bootloader
 * kernel
-* initramfs
-* init
-* SysVinit
-* systemd
+* `initramfs`
+* `init`
+* `sysVinit`
+* `systemd`
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Zn_IGnNMHvc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -41,7 +41,7 @@ It is important to understand because at this stage, you have very little contro
 2. Motherboard loads the bootloader
 3. Bootloader loads the Linux Kernel-based on its configs/commands
 4. The Kernel loads and prepares the system (root filesystem) and runs the initialization program
-5. Init program start the service such as web server, graphical interface, networking, etc.
+5. The `Init` program start the service such as web server, graphical interface, networking, etc.
 
 As we discussed in the previous section (101.1), the Firmware on the motherboard can be BIOS or UEFI. 
 
@@ -71,14 +71,14 @@ Technically you can point your UEFI to run anything you want but typically under
 
 The Kernel is the core of your operating system. it basically is LINUX itself. Your bootloader loads the kernel in the memory and runs it. But the kernel needs some initial info to start; Things like drivers which are necessary to work with the hardware. Those are stored in `initrd` or `initramfs` alongside the kernel and used during the boot. 
 
-You can also send parameters to the kernel during the boot using the Grub configs. For example, sending a 1 or S will result the system booting in single-user mode (recovery). Or you can force your graphics to work in 1024×768x24 mode by passing `vga=792` to the Kernel during the boot. 
+You can also send parameters to the kernel during the boot using the Grub configs. For example, sending a `1` or `S` will result the system booting in single-user mode (recovery). Or you can force your graphics to work in 1024×768x24 mode by passing `vga=792` to the Kernel during the boot. 
 
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Sn20NKM0hbw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-#### dmesg
+#### `dmesg`
 
 Linux will show you the boot process logs during the boot. Some desktop systems hide this behind a fancy splash screen which you can hide using the `Esc` key or press `Ctrl+Alt+F1`.
 
@@ -90,9 +90,9 @@ We can also use `journalctl -k` to check Kernel logs or use `journalctl -b` to c
 
 In addition to these, most systems keep the boot logs in a text-like file too and they can be found in `/var/log/boot` or `/var/log/boot.log` in Debian or Red-Hat based systems, respectively.
 
-#### /var/log/messages
+#### `/var/log/messages`
 
-After the init process comes up, syslog daemon will log messages. It has timestamps and will persist during restarts.
+After the init process comes up, `syslog` daemon will log messages. It has timestamps and will persist during restarts.
 
 * The Kernel is still logging its messages in Kernel Buffer Ring
 * in some systems, it might be called `/var/log/syslog`
@@ -104,9 +104,9 @@ When the Kernel initialization is finished, its time to start other programs. To
 
 There are different init systems:
 
-- **SysVinit** is based on Unix System V. Not being used much anymore but people loved it because it followed Unix philosophies. you may see it on older machines or even on recently installed ones.
-- **upstart** was an event-based replacement for the traditional init daemon developed by Canonical (The people behind Ubuntu). The goal of the project was to build a replacement for SysV when it got released in 2007. eventually, the project got discontinued due to the wide adoption of Systemd. Even Ubuntu uses Systemd these days, but upstart still can be found in google's ChromeOS.
-- **Systemd** is the new replacement. It is hated by Linux elitists for not following Unix principles but it's widely adopted by major distros. It can start services in parallel and do lots of fancy stuff! 
+- **`SysVinit`** is based on Unix System V. Not being used much anymore but people loved it because it followed Unix philosophies. you may see it on older machines or even on recently installed ones.
+- **`upstart`** was an event-based replacement for the traditional init daemon developed by Canonical (The people behind Ubuntu). The goal of the project was to build a replacement for SysV when it got released in 2007. eventually, the project got discontinued due to the wide adoption of `Systemd`. Even Ubuntu uses `Systemd` these days, but upstart still can be found in google's ChromeOS.
+- **`Systemd`** is the new replacement. It is hated by Linux elitists for not following Unix principles but it's widely adopted by major distros. It can start services in parallel and do lots of fancy stuff! 
 
 The init process had the ID of 1 and you can find it by running the 
 
@@ -126,10 +126,10 @@ You can check the hierarchy of processes using the `pstree` command.
 pstree
 ```
 
-## systemd
+## `systemd`
 Is new, loved, and hated. Lots of new ideas but not following some of the beloved UNIX principles (say.. not saving logs in a text file or trying to help you too much but asking for the root password when you are not running commands with sudo). It lets us run services if the hardware is connected, in time intervals, if another service is started, and ...
 
-The systemd is made around **units**. A unit can be a service, group of services, or an action. Units do have a name, a type, and a configuration file. There are 12 unit types: automount, device, mount, path, scope, service, slice, snapshot, socket, swap, target & timer.
+The systemd is made around **units**. A unit can be a service, group of services, or an action. Units do have a name, a type, and a configuration file. There are 12 unit types: `automount`, `device`, `mount`, `path`, `scope`, `service`, `slice`, `snapshot`, `socket`, `swap`, `target` & `timer`.
 
 We use `systemctl` to work with these units and `journalctl` to see the logs.
 
@@ -185,7 +185,7 @@ to check the logs, we have to use the `journalctl` utility:
 # journalctl _PID=1234
 ```
 
-## SysV
+## `SysV`
 Is the older init system. Still can be used on many systems. The control files are located at `/etc/init.d/` and are closer to the general bash scripts. In many cases you can call like:
 
 ```
